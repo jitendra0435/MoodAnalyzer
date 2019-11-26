@@ -5,6 +5,11 @@ public class MoodAnalyser {
     public  MoodAnalyser() throws MoodAnalyseException {
 
     }
+    public String analyseMood(String message) throws MoodAnalyseException {
+       this.message=message;
+        return analyseMood();
+    }
+
     public MoodAnalyser(String message) throws MoodAnalyseException {
         this.message=message;
     }
@@ -20,6 +25,11 @@ public class MoodAnalyser {
         }catch (NullPointerException e){
             throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.ENTERED_NULL,"Please enter proper mood" );
         }
+    }
+    public boolean equals(Object another){
+       if(this.message.equals(((MoodAnalyser)another).message))
+            return true;
+        return false;
     }
 
 }
