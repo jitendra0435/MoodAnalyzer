@@ -2,13 +2,13 @@ package com.user;
 
 public class MoodAnalyser {
     String message;
-    public  MoodAnalyser(){
+    public  MoodAnalyser() throws MoodAnalyseException {
 
     }
-    public MoodAnalyser(String message) {
+    public MoodAnalyser(String message) throws MoodAnalyseException {
         this.message=message;
     }
-    public String analyseMood(){
+    public String analyseMood() throws MoodAnalyseException{
         try {
             if (message.contains(("SAD")))
                 return "SAD";
@@ -16,8 +16,9 @@ public class MoodAnalyser {
                 return "HAPPY";
 
         }catch (NullPointerException e){
-                return "HAPPY";
+            throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.ENTERED_NULL,"Please enter Valid mood" );
         }
     }
+
 }
 
