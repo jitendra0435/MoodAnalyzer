@@ -2,7 +2,7 @@ package com.user;
 
 public class MoodAnalyseException extends Exception{
     enum  ExceptionType{
-        ENTERED_NULL,ENTERED_EMPTY;
+        ENTERED_NULL,ENTERED_EMPTY, type;
     }
     ExceptionType type;
 
