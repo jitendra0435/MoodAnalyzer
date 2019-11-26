@@ -4,31 +4,35 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserfactory {
-    public static MoodAnalyser createAnalyzer(String message)throws MoodAnalyseException{
+    public static MoodAnalyser createAnalyzer(String message1)throws MoodAnalyseException{
                 try{
                 Constructor<?> constructor = null;
                 Class<?> moodAnalyserClass = Class.forName("com.user.MoodAnalyser");
                 Constructor<?> moodConstructor = moodAnalyserClass.getConstructor(String.class);
-                Object obj = moodConstructor.newInstance(message);
+                Object obj = moodConstructor.newInstance(message1,message1);
                 return (MoodAnalyser) obj;
 
                 } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
+                    throw  new MoodAnalyseException(MoodAnalyseException.ExceptionType.NO_SUCH_METHOD);
                 } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
+                    throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.NOSUCH_CLASS);
                 } catch (InstantiationException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (InvocationTargetException e) {
                     e.printStackTrace();
+                } catch (IllegalArgumentException e){
+                    throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.NO_SUCH_METHOD);
+
             }
                 return null;
         }
+
     public static MoodAnalyser createAnalyzer()throws MoodAnalyseException{
         try{
             Constructor<?> constructor = null;
-            Class<?> moodAnalyserClass = Class.forName("com.user.MoodAnalyser1");
+            Class<?> moodAnalyserClass = Class.forName("com.user.MoodAnalyser");
             Constructor<?> moodConstructor = moodAnalyserClass.getConstructor();
             Object obj = moodConstructor.newInstance();
             return (MoodAnalyser) obj;

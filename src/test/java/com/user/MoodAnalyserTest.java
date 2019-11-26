@@ -63,8 +63,10 @@ public class MoodAnalyserTest {
     @Test
     public void given_moodAnalyserFor_comparing_Objects() {
         try {
-            MoodAnalyser moodAnalyser = MoodAnalyserfactory.createAnalyzer("I am in Happy mood");
-            Assert.assertEquals(new MoodAnalyser("I am in Happy mood"), moodAnalyser);
+            MoodAnalyser moodAnalyser1 = MoodAnalyserfactory.createAnalyzer();
+            MoodAnalyser moodAnalyser2= new MoodAnalyser();
+            boolean result = moodAnalyser1.equals(moodAnalyser2);
+            Assert.assertTrue(result);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,6 +78,14 @@ public class MoodAnalyserTest {
         } catch (MoodAnalyseException e){
             Assert.assertEquals(MoodAnalyseException.ExceptionType.NOSUCH_CLASS,e.type);
 
+        }
+    }
+    @Test
+    public void givenClassName_whenImproperConstructor_shouldThrowException() throws MoodAnalyseException {
+        try {
+            MoodAnalyser moodAnalyzer = MoodAnalyserfactory.createAnalyzer("String1");
+        } catch (MoodAnalyseException e) {
+            Assert.assertEquals(MoodAnalyseException.ExceptionType.NO_SUCH_METHOD, e.type);
         }
     }
 }
