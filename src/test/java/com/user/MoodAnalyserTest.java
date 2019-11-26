@@ -18,7 +18,7 @@ public class MoodAnalyserTest {
     @Test
     public void for_givenMessage_should_ReturnHappy() {
         String mood=null;
-        try {
+        try{
              MoodAnalyser moodAnalyser = new MoodAnalyser("I am in HAPPY mood");
              moodAnalyser.analyseMood();
         } catch (MoodAnalyseException e) {
@@ -51,7 +51,7 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void if_mood_is_Empty() {
+    public void if_passes_MoodValues_as_Empty_throwsException() {
         try {
             MoodAnalyser moodAnalyser = new MoodAnalyser("");
             moodAnalyser.analyseMood();
@@ -67,6 +67,15 @@ public class MoodAnalyserTest {
             Assert.assertEquals(new MoodAnalyser("I am in Happy mood"), moodAnalyser);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    @Test
+    public void when_pass_The_WrongClass_Name_throws_The_Exception(){
+        try{
+            MoodAnalyser moodAnalyser = MoodAnalyserfactory.createAnalyzer();
+        } catch (MoodAnalyseException e){
+            Assert.assertEquals(MoodAnalyseException.ExceptionType.NOSUCH_CLASS,e.type);
+
         }
     }
 }

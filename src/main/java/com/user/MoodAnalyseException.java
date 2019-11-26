@@ -2,7 +2,7 @@ package com.user;
 
 public class MoodAnalyseException extends Exception{
     enum  ExceptionType{
-        ENTERED_NULL,ENTERED_EMPTY, type;
+        ENTERED_NULL,ENTERED_EMPTY,NOSUCH_CLASS;
     }
     ExceptionType type;
 
@@ -10,4 +10,11 @@ public class MoodAnalyseException extends Exception{
         super(message);
         this.type=type;
     }
+    public MoodAnalyseException(ExceptionType noSuchClass)
+    {
+        super(noSuchClass.toString());
+        this.type=noSuchClass;
+    }
+
+
 }
