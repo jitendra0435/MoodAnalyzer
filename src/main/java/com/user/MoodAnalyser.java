@@ -23,7 +23,7 @@ public class MoodAnalyser {
                 return "HAPPY";
 
         }catch (NullPointerException e){
-            throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.ENTERED_NULL,"Please enter proper mood" );
+            throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.ENTERED_NULL,"Please enter proper mood");
         }
     }
     public boolean equals(Object another){
