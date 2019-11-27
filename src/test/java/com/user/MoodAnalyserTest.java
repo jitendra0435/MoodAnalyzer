@@ -87,5 +87,31 @@ public class MoodAnalyserTest {
             Assert.assertEquals(MoodAnalyseException.ExceptionType.NO_SUCH_METHOD, e.type);
         }
     }
+
+    @Test
+    public void givenHappymessage_with_Reflection_Should_Return_Happy(){
+        try {
+            Constructor<?>constructor=MoodAnalyserReflector.getConstrcutor();
+            Object myObject =MoodAnalyserReflector.createMoodAnalyser(constructor);
+            Object mood=MoodAnalyserReflector.invokeMethode(myObject,"analyseMood");
+            MoodAnalyserReflector.invokeMethode(myObject,"analyseMood");
+            Assert.assertEquals("HAPPY",mood);
+        } catch (MoodAnalyseException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void givenMoodAnalyser_onChanged_Should_Return_Happy(){
+        try {
+            MoodAnalyser moodAnalyser=new MoodAnalyser();
+            Constructor<?>constructor=MoodAnalyserReflector.getConstrcutor();
+            Object myObject=MoodAnalyserReflector.createMoodAnalyser(constructor);
+            MoodAnalyserReflector.setFieldValue(myObject,"message","I am in HAPPY Mood");
+            Object mood=moodAnalyser.analyseMood();
+            Assert.assertEquals("HAPPY",mood);
+        } catch (MoodAnalyseException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
